@@ -1,4 +1,9 @@
 package com.syuan0321.unitseed.utils;
+/**************************************************************************
+StringFromConstArray<br/>
+
+
+***************************************************************************/
 
 public class StringFromConstArray {
 	//Must start with 0, because array 1st position indexed as 0

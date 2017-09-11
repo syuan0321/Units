@@ -14,8 +14,11 @@
 	    System.out.println("body == body1 : " + (body == body1) );  ==>false
 	      
 	    System.out.println("body.head == body1.head : " +  (body.head == body1.head)); ==>true 
+	    
+4. Normal Deepclone
+  All member instance fields except primative members should override Obj clone() as well	    
 
-4.When use DeepCopty through serialization have to be caredul:
+5. Serialization Deepclone : When use DeepCopty through serialization have to be caredul:
   a. All class include member instance class should be serializeable
   b. After writing obj in the stream could not change fields definition any more, if so in deserialization will cause trouble 
  
