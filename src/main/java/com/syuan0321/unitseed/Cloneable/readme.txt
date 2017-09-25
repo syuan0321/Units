@@ -10,7 +10,7 @@
    b. Clone the object instance
 
 3.ShadowCopy VS DeepCopy
-  a.SC only works get obj, but member instance(address reference) in obj will be the same address  
+  a.SC only works get obj, but member instance(address reference) in obj will be the same address  ==> same reference
 	    System.out.println("body == body1 : " + (body == body1) );  ==>false
 	      
 	    System.out.println("body.head == body1.head : " +  (body.head == body1.head)); ==>true 

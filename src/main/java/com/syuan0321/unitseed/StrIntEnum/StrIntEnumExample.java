@@ -1,7 +1,10 @@
 package com.syuan0321.unitseed.StrIntEnum;
 
 public class StrIntEnumExample {
-
+	
+    /* ************************************************************************
+     * ENUMS Example : ExmpLetterDigits
+     * ************************************************************************/
 	public enum ExmpLetterDigits implements IStrIntEnum {
 		DEFAULT("unknown", 0), b("BBB", 2), c("CCC", 3), a("AAA", 1),;
 		String name;
@@ -36,7 +39,10 @@ public class StrIntEnumExample {
 		 * this.getString() + "  " + this.getInt(); }
 		 */
 	}
-
+	
+    /* ************************************************************************
+     * ENUMS Example : ExmpBikeType
+     * ************************************************************************/
 	public enum ExmpBikeType implements IStrIntEnum {
 		DEFAULT(0, "unknown vehicle"),
 

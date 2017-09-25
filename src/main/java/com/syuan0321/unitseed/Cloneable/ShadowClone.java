@@ -1,11 +1,15 @@
 package com.syuan0321.unitseed.Cloneable;
 
+import com.syuan0321.unitseed.Cloneable.DeepClone.Body;
+import com.syuan0321.unitseed.Cloneable.DeepClone.Head;
+
 public class ShadowClone {
 	static class Body implements Cloneable{  
 	    public Head head;  
 	    public Body() {}  
 	    public Body(Head head) {this.head = head;}  
-	  
+	    public int state = 0;
+	    
 	    @Override  
 	    protected Object clone() throws CloneNotSupportedException {  
 	        Body newBody =  (Body) super.clone();  
@@ -14,8 +18,10 @@ public class ShadowClone {
 	      
 	}  
 	static class Head implements Cloneable{  
-	      
 	    public Head() {}  
+	    
+	    public int substate = 0;
+	    
 	    @Override  
 	    protected Object clone() throws CloneNotSupportedException {  
 	        return super.clone();  
@@ -24,8 +30,17 @@ public class ShadowClone {
 	public static void main(String[] args) throws CloneNotSupportedException {  
 	      
 	    Body body = new Body(new Head());  
+	    
+	    Body body1 = (Body) body.clone(); 
+	    
+	    
+	    body.state = 1;
+
+	    body.head.substate = 3;
 	      
-	    Body body1 = (Body) body.clone();  
+	    
+	    System.out.println(body.state + "   " + body1.state);
+	    System.out.println(body.head.substate + "   " + body1.head.substate);	    
 	      
 	    System.out.println("body == body1 : " + (body == body1) );  
 	      
