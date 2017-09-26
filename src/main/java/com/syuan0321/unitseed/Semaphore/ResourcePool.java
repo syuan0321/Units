@@ -24,7 +24,7 @@ public abstract class ResourcePool {
 	}
 	
 	public void recycle(ResourceExample resource){
-		if(!pool.offer(resource)){//try to store resource back in queue, if successful then retur true
+		if(!pool.offer(resource)){//try to store resource back in queue, if successful then return true
 			close(resource);
 		}
 	}
