@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public abstract class AbstractLifecycle implements ILifecycle {
+public abstract class AbstractLifecycleManager implements ILifecycle {
 
     private List<ILifecycleListener> listeners = new CopyOnWriteArrayList<ILifecycleListener>();
 

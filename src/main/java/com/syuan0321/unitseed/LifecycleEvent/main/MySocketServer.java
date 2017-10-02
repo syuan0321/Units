@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import com.syuan0321.unitseed.LifecycleEvent.DefaultLifecycle;
+import com.syuan0321.unitseed.LifecycleEvent.DefaultLifecycleManager;
 import com.syuan0321.unitseed.LifecycleEvent.LifecycleException;
 
-public class MySocketServer extends DefaultLifecycle {
+public class MySocketServer extends DefaultLifecycleManager {
 
     private ServerSocket acceptor = null;
     private int port = 9527;

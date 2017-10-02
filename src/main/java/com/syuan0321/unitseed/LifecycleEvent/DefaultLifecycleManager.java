@@ -1,6 +1,6 @@
 package com.syuan0321.unitseed.LifecycleEvent;
 
-public class DefaultLifecycle extends AbstractLifecycle {
+public class DefaultLifecycleManager extends AbstractLifecycleManager {
 
     /*
      * @see AbstractLifecycle#init0()
