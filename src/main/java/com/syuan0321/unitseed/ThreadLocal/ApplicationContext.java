@@ -3,7 +3,7 @@
  * Threadlocal as a cached map to store runtime variable:
  * ApplicationContext.findContext().setA(a);
  * 	then:
- * ApplicationContext.findContext().getA();==. return cache Object A
+ * ApplicationContext.findContext().getA(); -> return cache Object A
  * 
  * 
  * 
