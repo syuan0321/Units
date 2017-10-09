@@ -35,8 +35,10 @@ public class ShadowClone {
 	    
 	    
 	    body.state = 1;
+	    body1.state = 2;
 
 	    body.head.substate = 3;
+	    body1.head.substate = 4;
 	      
 	    
 	    System.out.println(body.state + "   " + body1.state);

@@ -35,7 +35,9 @@ public class DeepClone {
 	    Body body = new Body(new Head());  
 	    Body body1 = (Body) body.clone();  
 	    body.state = 1;
+	    body1.state = 2;
 	    body.head.substate = 3;
+	    body1.head.substate = 4;
 	    
 	    HashSet<String> hs = new HashSet<>();
 	    for(String s : hs){
