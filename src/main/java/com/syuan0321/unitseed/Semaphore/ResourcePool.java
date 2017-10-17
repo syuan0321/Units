@@ -2,12 +2,14 @@ package com.syuan0321.unitseed.Semaphore;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import com.sun.xml.internal.ws.Closeable;
 
 /**
- * Blockingqueue for a thread-safe resource pool VS ThreadPoolExecutor
- * 
+ * Blockingqueue for a thread-safe resource pool 
+ * 					VS 
+ * ThreadPoolExecutor(int corePoolSize, int maximumPoolSize,long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue)
  * 
  * 
  * **/
@@ -24,7 +26,7 @@ public abstract class ResourcePool {
 	}
 	
 	public void recycle(ResourceExample resource){
-		if(!pool.offer(resource)){//try to store resource back in queue, if successful then return true
+		if(!pool.offer(resource)){//try to store resource back in queue, if successful then return true [offer() vs put()]
 			close(resource);
 		}
 	}
