@@ -46,7 +46,20 @@ public class ResourcePool {
 	
 	public static void main(String[] args) {
 		ResourcePool poolInstance = new ResourcePool(2);
-		for (int i = 0; i < 10; i++) {
+		
+		ResourcePollRunable threadRunA = new ResourcePollRunable(poolInstance.acquire(), 1);
+		ResourcePollRunable threadRunB = new ResourcePollRunable(poolInstance.acquire(), 2);
+		ResourcePollRunable threadRunC = new ResourcePollRunable(poolInstance.acquire(), 3);
+		ResourcePollRunable threadRunD = new ResourcePollRunable(poolInstance.acquire(), 4);
+		ResourcePollRunable threadRunE = new ResourcePollRunable(poolInstance.acquire(), 5);
+		threadRunC.run();
+		threadRunB.run();
+		threadRunA.run();
+		threadRunD.run();
+		threadRunE.run();
+		
+		
+/*		for (int i = 0; i < 10; i++) {
 			System.out.println("XXX : " + i);
 			ResourceExample instance = poolInstance.acquire();
 			ResourcePollRunable threadRun = new ResourcePollRunable(instance, i);
@@ -55,7 +68,7 @@ public class ResourcePool {
 				poolInstance.recycle(instance);
 			}
 		}
-		
+*/		
 	}
 	
 	
