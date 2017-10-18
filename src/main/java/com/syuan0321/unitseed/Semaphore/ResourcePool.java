@@ -14,8 +14,8 @@ import com.sun.xml.internal.ws.Closeable;
  * 
  * **/
 
-public abstract class ResourcePool {
-	private final BlockingQueue<ResourceExample> pool;
+public class ResourcePool {
+	protected final BlockingQueue<ResourceExample> pool;
 	private ResourcePool(int poolSize){ 
 		this.pool  = new ArrayBlockingQueue<ResourceExample>(poolSize); 
 	}
@@ -31,7 +31,32 @@ public abstract class ResourcePool {
 		}
 	}
 	
+	protected void close(ResourceExample resource){
+		resource.setStatus(44);
+		//set resource status to be ready to use
+	}
 	
-	protected abstract ResourceExample create();
-	protected abstract void close(ResourceExample resource);
+	protected ResourceExample create(){
+		ResourceExample newInstance = new ResourceExample();
+//		newInstance.setStatus(ResourceExample.IN_USE);
+		newInstance.setStatus(33);
+		return newInstance;
+	}
+	
+	
+	public static void main(String[] args) {
+		ResourcePool poolInstance = new ResourcePool(2);
+		for (int i = 0; i < 10; i++) {
+			System.out.println("XXX : " + i);
+			ResourceExample instance = poolInstance.acquire();
+			ResourcePollRunable threadRun = new ResourcePollRunable(instance, i);
+			threadRun.run();
+			if(threadRun.isDone()){
+				poolInstance.recycle(instance);
+			}
+		}
+		
+	}
+	
+	
 }
