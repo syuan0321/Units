@@ -46,7 +46,7 @@ public class ResourcePool {
 	
 	public static void main(String[] args) {
 		ResourcePool poolInstance = new ResourcePool(2);
-		
+		//String order dependent
 		ResourcePollRunable threadRunA = new ResourcePollRunable(poolInstance.acquire(), 1);
 		ResourcePollRunable threadRunB = new ResourcePollRunable(poolInstance.acquire(), 2);
 		ResourcePollRunable threadRunC = new ResourcePollRunable(poolInstance.acquire(), 3);
