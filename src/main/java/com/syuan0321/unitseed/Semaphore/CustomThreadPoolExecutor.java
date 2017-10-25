@@ -32,8 +32,12 @@ public class CustomThreadPoolExecutor {
      * rejectedExecutionHandler 当提交任务数超过maxmumPoolSize+workQueue之和时, 
      *                          即当提交第41个任务时(前面线程都没有执行完,此测试方法中用sleep(100)), 
      *                                任务会交给RejectedExecutionHandler来处理 
-     */  
-    public void init() {  
+     */
+    public CustomThreadPoolExecutor(){
+    	this.init();
+    }
+    
+    private void init() {  
         pool = new ThreadPoolExecutor(  
                 10,  
                 30,  
@@ -50,7 +54,6 @@ public class CustomThreadPoolExecutor {
             pool.shutdownNow();  
         }  
     }  
-      
       
     public ExecutorService getCustomThreadPoolExecutor() {  
         return this.pool;  
@@ -75,23 +78,16 @@ public class CustomThreadPoolExecutor {
   
         @Override  
         public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {  
-            // 记录异常  
-            // 报警处理等  
             System.out.println("error.............");  
         }  
     }  
       
-      
-      
-    // 测试构造的线程池  
     public static void main(String[] args) {  
         CustomThreadPoolExecutor exec = new CustomThreadPoolExecutor();  
-        // 1.初始化  
-        exec.init();  
           
         ExecutorService pool = exec.getCustomThreadPoolExecutor();  
         for(int i=1; i<100; i++) {  
-            System.out.println("提交第" + i + "个任务!");  
+            System.out.println("Submit no. " + i + " task.");  
             pool.execute(new Runnable() {  
                 @Override  
                 public void run() {  
@@ -100,14 +96,12 @@ public class CustomThreadPoolExecutor {
                     } catch (InterruptedException e) {  
                         e.printStackTrace();  
                     }  
-                    System.out.println("running=====");  
+                    System.out.println("No. running=====");  
                 }  
             });  
         }  
-          
-        // 2.销毁----此处不能销毁,因为任务没有提交执行完,如果销毁线程池,任务也就无法执行了  
-        // exec.destory();  
-          
+        
+        //exec.destory();
         try {  
             Thread.sleep(10000);  
         } catch (InterruptedException e) {  
