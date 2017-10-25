@@ -8,6 +8,8 @@
  * 
  * 6.SynchronousQueue
  * 
+ * Condition.await() VS Object.wait()/notify
+ * Condition is interuptable, no synchronized block required.
  * 
  * */
 package com.syuan0321.unitseed.Semaphore.ProducerConsumer;
@@ -15,8 +17,8 @@ package com.syuan0321.unitseed.Semaphore.ProducerConsumer;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class MyBlockingqueue<E> implements BlockingQueue<E>{
@@ -32,14 +34,26 @@ public class MyBlockingqueue<E> implements BlockingQueue<E>{
 	
     /**daemon lock*/
     private final ReentrantLock mainLock;
+    
+    /** Condition for waiting takes */
+    private final Condition notEmpty;
+    /** Condition for waiting puts */
+    private final Condition notFull;
+    
 	
 	public MyBlockingqueue() {
 		this.mainLock =  new ReentrantLock();
-		this.items  = new Object[DEFAULT_ITEM_CAPCITY];
+        this.notEmpty = this.mainLock.newCondition();
+        this.notFull =  this.mainLock.newCondition();
+		
+        this.items  = new Object[DEFAULT_ITEM_CAPCITY];
 	}
 
 	public MyBlockingqueue(int capacity) {
 		this.mainLock =  new ReentrantLock();
+		this.notEmpty = this.mainLock.newCondition();
+		this.notFull =  this.mainLock.newCondition();
+
 		this.items  = new Object[capacity];
 	}
 	
